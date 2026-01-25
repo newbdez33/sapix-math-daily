@@ -1,73 +1,97 @@
-# React + TypeScript + Vite
+# 🧮 SAPIX算数デイリー練習
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[日本語](#日本語) | [English](#english) | [中文](#中文)
 
-Currently, two official plugins are available:
+**Live Demo:** https://newbdez33.github.io/sapix-math-daily/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 日本語
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+SAPIX（サピックス）に通う子供のための算数デイリー復習サイトです。
 
-## Expanding the ESLint configuration
+### 特徴
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📝 **問題のみ表示** - 印刷して紙で解く用
+- 📖 **解答付き表示** - 解き方のステップ付き
+- 🖨️ **印刷対応** - きれいに印刷できるレイアウト
+- 🧮 **数式表示** - KaTeXによる美しい数式レンダリング
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 使い方
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. 問題セットを選ぶ
+2. 「問題のみ」または「解答付き」を選択
+3. 印刷ボタンで印刷
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 開発
+
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## English
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+A math practice website for children attending SAPIX cram school in Japan.
+
+### Features
+
+- 📝 **Questions Only** - Print worksheets to solve with pen and paper
+- 📖 **With Answers** - Step-by-step solutions included
+- 🖨️ **Print Friendly** - Clean layout optimized for printing
+- 🧮 **Math Rendering** - Beautiful formulas with KaTeX
+
+### Usage
+
+1. Select a question set
+2. Choose "Questions Only" or "With Answers"
+3. Click Print button
+
+### Development
+
+```bash
+pnpm install
+pnpm dev
 ```
+
+---
+
+## 中文
+
+为在日本上SAPIX（サピックス）补习班的孩子制作的算数每日练习网站。
+
+### 功能特点
+
+- 📝 **仅显示题目** - 打印后用纸笔作答
+- 📖 **带答案显示** - 包含详细解题步骤
+- 🖨️ **打印友好** - 针对打印优化的布局
+- 🧮 **数学公式** - 使用KaTeX渲染美观的数学公式
+
+### 使用方法
+
+1. 选择题目集
+2. 选择「仅题目」或「带答案」
+3. 点击打印按钮
+
+### 开发
+
+```bash
+pnpm install
+pnpm dev
+```
+
+---
+
+## Tech Stack
+
+- React + TypeScript
+- Vite
+- Tailwind CSS v4
+- shadcn/ui
+- KaTeX
+
+## License
+
+MIT
