@@ -1,3 +1,9 @@
+export interface ExplanationStep {
+  title: string
+  description?: string
+  formulas: string[]
+}
+
 export interface Question {
   id: string
   title: string
@@ -5,6 +11,12 @@ export interface Question {
   formula: string
   answer: string
   steps?: string[]
+  explanation?: {
+    method: string
+    methodDescription: string
+    steps: ExplanationStep[]
+    tips?: { title: string; description: string }[]
+  }
 }
 
 export interface QuestionSet {
@@ -32,6 +44,57 @@ export const questionSets: QuestionSet[] = [
           String.raw`4.875 + \square = 3.5 \div \frac{4}{9} = \frac{7}{2} \times \frac{9}{4} = \frac{63}{8} = 7.875`,
           String.raw`\square = 7.875 - 4.875 = 3`,
         ],
+        explanation: {
+          method: 'たまねぎの皮むき法',
+          methodDescription: 'この問題は「たまねぎ」のようになっています。外側から順番に皮をむいていくように、一つずつ計算していきましょう！',
+          steps: [
+            {
+              title: 'ステップ1：一番外側の { } を求める',
+              description: '「5/6 から何かを引くと 0.5 になる」ということは...',
+              formulas: [
+                String.raw`\frac{5}{6} - \{なにか\} = 0.5`,
+                String.raw`\{なにか\} = \frac{5}{6} - 0.5`,
+                String.raw`0.5 = \frac{1}{2} = \frac{3}{6}`,
+                String.raw`\frac{5}{6} - \frac{3}{6} = \frac{2}{6} = \frac{1}{3}`,
+                String.raw`\{なにか\} = \frac{1}{3}`,
+              ],
+            },
+            {
+              title: 'ステップ2：割り算の部分を求める',
+              description: '「何かから 1/9 を引くと 1/3 になる」ということは...',
+              formulas: [
+                String.raw`3.5 \div (なにか) - \frac{1}{9} = \frac{1}{3}`,
+                String.raw`3.5 \div (なにか) = \frac{1}{3} + \frac{1}{9}`,
+                String.raw`\frac{1}{3} = \frac{3}{9}`,
+                String.raw`\frac{3}{9} + \frac{1}{9} = \frac{4}{9}`,
+                String.raw`3.5 \div (なにか) = \frac{4}{9}`,
+              ],
+            },
+            {
+              title: 'ステップ3：( ) の中を求める',
+              description: '「3.5 を何かで割ると 4/9 になる」→ 分数で割るときは、ひっくり返してかける！',
+              formulas: [
+                String.raw`なにか = 3.5 \div \frac{4}{9}`,
+                String.raw`3.5 = \frac{7}{2}`,
+                String.raw`\frac{7}{2} \div \frac{4}{9} = \frac{7}{2} \times \frac{9}{4} = \frac{63}{8} = 7.875`,
+                String.raw`4.875 + \square = 7.875`,
+              ],
+            },
+            {
+              title: 'ステップ4：□を求める',
+              description: '',
+              formulas: [
+                String.raw`\square = 7.875 - 4.875 = 3`,
+              ],
+            },
+          ],
+          tips: [
+            { title: '外から内へ', description: 'たまねぎの皮むきのように、外側から順番に解く' },
+            { title: '逆算', description: '「A - B = C」なら「B = A - C」' },
+            { title: '分数の通分', description: '分母をそろえてから計算する' },
+            { title: '分数の割り算', description: 'ひっくり返してかける' },
+          ],
+        },
       },
     ],
   },
