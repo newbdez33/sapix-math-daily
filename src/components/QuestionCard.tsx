@@ -49,12 +49,65 @@ export function QuestionCard({ question, index, showAnswer = false }: QuestionCa
           </div>
 
           {(revealed || showAnswer) && (
-            <div className="mt-2 space-y-2">
+            <div className="mt-2 space-y-4">
               <div className="flex justify-center text-xl font-bold text-primary">
                 <MathFormula formula={`\\square = ${question.answer}`} />
               </div>
 
-              {question.steps && (
+              {/* Detailed explanation (if available) */}
+              {question.explanation ? (
+                <div className="mt-4 space-y-4">
+                  {/* Method title */}
+                  <div className="rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 p-4 border border-blue-200">
+                    <h4 className="text-lg font-bold text-blue-700 flex items-center gap-2">
+                      🧅 {question.explanation.method}
+                    </h4>
+                    <p className="mt-1 text-sm text-gray-600">
+                      {question.explanation.methodDescription}
+                    </p>
+                  </div>
+
+                  {/* Steps */}
+                  {question.explanation.steps.map((step, i) => (
+                    <div key={i} className="rounded-lg bg-muted/50 p-4 space-y-2">
+                      <h5 className="font-bold text-primary flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs">
+                          {i + 1}
+                        </span>
+                        {step.title}
+                      </h5>
+                      {step.description && (
+                        <p className="text-sm text-muted-foreground ml-8">
+                          💡 {step.description}
+                        </p>
+                      )}
+                      <div className="ml-8 space-y-1">
+                        {step.formulas.map((formula, j) => (
+                          <div key={j} className="py-1">
+                            <MathFormula formula={formula} />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Tips */}
+                  {question.explanation.tips && (
+                    <div className="rounded-lg bg-yellow-50 p-4 border border-yellow-200">
+                      <h5 className="font-bold text-yellow-700 mb-2">📝 ポイントまとめ</h5>
+                      <div className="grid gap-2 sm:grid-cols-2">
+                        {question.explanation.tips.map((tip, i) => (
+                          <div key={i} className="text-sm">
+                            <span className="font-medium text-yellow-800">{tip.title}:</span>{' '}
+                            <span className="text-gray-600">{tip.description}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : question.steps ? (
+                /* Simple steps (fallback) */
                 <div className="mt-4 space-y-2 rounded-lg bg-muted/50 p-4">
                   <p className="text-sm font-medium text-muted-foreground">解き方 / Steps:</p>
                   {question.steps.map((step, i) => (
@@ -64,7 +117,7 @@ export function QuestionCard({ question, index, showAnswer = false }: QuestionCa
                     </div>
                   ))}
                 </div>
-              )}
+              ) : null}
             </div>
           )}
 
