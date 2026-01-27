@@ -36,7 +36,7 @@ export const questionSets: QuestionSet[] = [
         id: 'ir1',
         title: '問題1（基本）',
         date: '2025-01-27',
-        formula: String.raw`\frac{1}{96}, \frac{2}{96}, \frac{3}{96}, \cdots, \frac{94}{96}, \frac{95}{96}, \frac{96}{96} のうち、約分できない分数は\fbox{　}個、その和は\fbox{　}`,
+        formula: String.raw`\dfrac{1}{96}, \dfrac{2}{96}, \dfrac{3}{96}, \cdots, \dfrac{96}{96} \text{ のうち、約分できない分数は } \fbox{?} \text{ 個、和は } \fbox{?}`,
         answer: '32個、和は16',
         explanation: {
           method: '仲間はずれ探しゲーム',
@@ -92,7 +92,7 @@ export const questionSets: QuestionSet[] = [
         id: 'ir2',
         title: '問題2（練習）',
         date: '2025-01-27',
-        formula: String.raw`\frac{1}{24}, \frac{2}{24}, \frac{3}{24}, \cdots, \frac{23}{24}, \frac{24}{24} のうち、約分できない分数は\fbox{　}個、その和は\fbox{　}`,
+        formula: String.raw`\dfrac{1}{24}, \dfrac{2}{24}, \dfrac{3}{24}, \cdots, \dfrac{24}{24} \text{ のうち、約分できない分数は } \fbox{?} \text{ 個、和は } \fbox{?}`,
         answer: '8個、和は4',
         steps: [
           String.raw`24 = 2^3 \times 3 より、2でも3でも割れない数を探す`,
@@ -105,7 +105,7 @@ export const questionSets: QuestionSet[] = [
         id: 'ir3',
         title: '問題3（練習）',
         date: '2025-01-27',
-        formula: String.raw`\frac{1}{48}, \frac{2}{48}, \frac{3}{48}, \cdots, \frac{47}{48}, \frac{48}{48} のうち、約分できない分数は\fbox{　}個、その和は\fbox{　}`,
+        formula: String.raw`\dfrac{1}{48}, \dfrac{2}{48}, \dfrac{3}{48}, \cdots, \dfrac{48}{48} \text{ のうち、約分できない分数は } \fbox{?} \text{ 個、和は } \fbox{?}`,
         answer: '16個、和は8',
         steps: [
           String.raw`48 = 2^4 \times 3 より、2でも3でも割れない数を探す`,
@@ -118,7 +118,7 @@ export const questionSets: QuestionSet[] = [
         id: 'ir4',
         title: '問題4（応用）',
         date: '2025-01-27',
-        formula: String.raw`\frac{1}{30}, \frac{2}{30}, \frac{3}{30}, \cdots, \frac{29}{30}, \frac{30}{30} のうち、約分できない分数は\fbox{　}個、その和は\fbox{　}`,
+        formula: String.raw`\dfrac{1}{30}, \dfrac{2}{30}, \dfrac{3}{30}, \cdots, \dfrac{30}{30} \text{ のうち、約分できない分数は } \fbox{?} \text{ 個、和は } \fbox{?}`,
         answer: '8個、和は4',
         steps: [
           String.raw`30 = 2 \times 3 \times 5 より、2でも3でも5でも割れない数を探す`,
@@ -131,7 +131,7 @@ export const questionSets: QuestionSet[] = [
         id: 'ir5',
         title: '問題5（チャレンジ）',
         date: '2025-01-27',
-        formula: String.raw`\frac{1}{60}, \frac{2}{60}, \frac{3}{60}, \cdots, \frac{59}{60}, \frac{60}{60} のうち、約分できない分数は\fbox{　}個、その和は\fbox{　}`,
+        formula: String.raw`\dfrac{1}{60}, \dfrac{2}{60}, \dfrac{3}{60}, \cdots, \dfrac{60}{60} \text{ のうち、約分できない分数は } \fbox{?} \text{ 個、和は } \fbox{?}`,
         answer: '16個、和は8',
         steps: [
           String.raw`60 = 2^2 \times 3 \times 5 より、2でも3でも5でも割れない数を探す`,
