@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { Question } from '@/data/questions'
 import { MathFormula } from './MathFormula'
 import { Button } from '@/components/ui/button'
@@ -12,9 +12,72 @@ interface QuestionCardProps {
 
 export function QuestionCard({ question, index, showAnswer = false }: QuestionCardProps) {
   const [revealed, setRevealed] = useState(showAnswer)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const handlePrint = () => {
+    if (!cardRef.current) return
+
+    const printWindow = window.open('', '_blank')
+    if (!printWindow) return
+
+    const styles = Array.from(document.styleSheets)
+      .map(sheet => {
+        try {
+          return Array.from(sheet.cssRules).map(rule => rule.cssText).join('\n')
+        } catch {
+          return ''
+        }
+      })
+      .join('\n')
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${question.title}</title>
+          <style>${styles}</style>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+          <style>
+            body {
+              padding: 40px;
+              font-family: system-ui, -apple-system, sans-serif;
+              max-width: 800px;
+              margin: 0 auto;
+            }
+            .no-print { display: none !important; }
+            /* Remove card border and shadow */
+            [class*="border-dashed"], [class*="border-2"] {
+              border: none !important;
+              box-shadow: none !important;
+            }
+            /* Clean header */
+            [class*="CardHeader"] {
+              padding-bottom: 16px;
+              border-bottom: 1px solid #eee;
+            }
+            /* Larger formula */
+            .katex { font-size: 1.3em; }
+            /* Answer area */
+            [class*="border-dashed"][class*="h-12"] {
+              border: 2px dashed #ccc !important;
+              margin-top: 20px;
+            }
+          </style>
+        </head>
+        <body>
+          ${cardRef.current.outerHTML}
+        </body>
+      </html>
+    `)
+    printWindow.document.close()
+    printWindow.onload = () => {
+      printWindow.print()
+      printWindow.close()
+    }
+  }
 
   return (
-    <Card className="break-inside-avoid mb-6 border-2 border-dashed border-gray-300 print:border-solid">
+    <Card ref={cardRef} className="break-inside-avoid mb-6 border-2 border-dashed border-gray-300 print:border-solid">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center justify-between text-lg">
           <span className="flex items-center gap-2">
@@ -23,8 +86,13 @@ export function QuestionCard({ question, index, showAnswer = false }: QuestionCa
             </span>
             <span>{question.title}</span>
           </span>
-          <span className="text-sm font-normal text-muted-foreground no-print">
-            {question.date}
+          <span className="flex items-center gap-2 no-print">
+            <span className="text-sm font-normal text-muted-foreground">
+              {question.date}
+            </span>
+            <Button variant="ghost" size="sm" onClick={handlePrint} title="Print this question">
+              🖨️
+            </Button>
           </span>
         </CardTitle>
       </CardHeader>
