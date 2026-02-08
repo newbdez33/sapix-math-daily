@@ -11,6 +11,7 @@ export interface Question {
   formula: string
   answer: string
   steps?: string[]
+  diagram?: 'angle-puzzle' | 'trapezoid' | '3d-composite' | string
   explanation?: {
     method: string
     methodDescription: string
@@ -282,6 +283,175 @@ export const questionSets: QuestionSet[] = [
           String.raw`3 + \square = 4.5 \div \frac{1}{2} = 4.5 \times 2 = 9`,
           String.raw`\square = 9 - 3 = 6`,
         ],
+      },
+    ],
+  },
+  {
+    id: 'geometry-feb-2026',
+    title: '図形問題（2月）',
+    description: '角度、面積、体積の総合問題',
+    questions: [
+      {
+        id: 'geo1',
+        title: '問題8（角度）',
+        date: '2026-02-08',
+        formula: String.raw`x = \fbox{?} \text{度}`,
+        answer: '120度',
+        diagram: 'angle-puzzle',
+        explanation: {
+          method: '角度の足し算・引き算',
+          methodDescription: '三角形の角は全部合わせると180度！この秘密を使って、隠れている角を見つけよう！',
+          steps: [
+            {
+              title: 'ステップ1：まず90度から60度を引こう',
+              description: '図の右側には直角（90度）があって、その一部が60度だね。',
+              formulas: [
+                String.raw`90° - 60° = 30°`,
+                String.raw`この30°が次のステップで役立つよ！`,
+              ],
+            },
+            {
+              title: 'ステップ2：一直線は180度',
+              description: '下の105度の角と、その反対側の角を考えよう。',
+              formulas: [
+                String.raw`180° - 105° = 75°`,
+                String.raw`反対側は75°だね！`,
+              ],
+            },
+            {
+              title: 'ステップ3：三角形の秘密を使おう',
+              description: '図の中の三角形の3つの角を全部足すと180度になる！',
+              formulas: [
+                String.raw`45° + 30° + (残りの角) = 180°`,
+                String.raw`75° + (残りの角) = 180°`,
+                String.raw`残りの角 = 180° - 75° = 105°`,
+              ],
+            },
+            {
+              title: 'ステップ4：xを求めよう！',
+              description: 'xと60度は一直線上にあるから、合わせて180度！',
+              formulas: [
+                String.raw`x + 60° = 180°`,
+                String.raw`x = 180° - 60° = 120°`,
+              ],
+            },
+          ],
+          tips: [
+            { title: '三角形の角', description: '三角形の3つの角を足すと必ず180度' },
+            { title: '一直線', description: '一直線上の角は合わせて180度' },
+            { title: '直角', description: '四角い角（L字）は90度' },
+            { title: 'ステップ', description: '分からない角は、知っている角から順番に求めていこう' },
+          ],
+        },
+      },
+      {
+        id: 'geo2',
+        title: '問題9（面積）',
+        date: '2026-02-08',
+        formula: String.raw`\text{斜線部分} = \fbox{?} \text{ cm}^2`,
+        answer: '180 cm²',
+        diagram: 'trapezoid',
+        explanation: {
+          method: '台形と三角形に分ける方法',
+          methodDescription: 'この図形を台形と三角形に分けて、それぞれの面積を計算して足し合わせよう！',
+          steps: [
+            {
+              title: 'ステップ1：図形を分けよう',
+              description: 'この図形は台形と三角形に分けることができるよ！',
+              formulas: [
+                String.raw`\text{左側の三角形：底辺5cm、高さ12cm}`,
+                String.raw`\text{右側の台形：上底10cm、下底15cm、高さ12cm}`,
+              ],
+            },
+            {
+              title: 'ステップ2：三角形の面積',
+              description: '三角形の面積 = 底辺 × 高さ ÷ 2',
+              formulas: [
+                String.raw`\text{三角形} = 5 \times 12 \div 2`,
+                String.raw`= 60 \div 2`,
+                String.raw`= 30 \text{ cm}^2`,
+              ],
+            },
+            {
+              title: 'ステップ3：台形の面積',
+              description: '台形の面積 = (上底 + 下底) × 高さ ÷ 2',
+              formulas: [
+                String.raw`\text{台形} = (10 + 15) \times 12 \div 2`,
+                String.raw`= 25 \times 12 \div 2`,
+                String.raw`= 300 \div 2`,
+                String.raw`= 150 \text{ cm}^2`,
+              ],
+            },
+            {
+              title: 'ステップ4：合計を求めよう',
+              description: '三角形と台形の面積を足し合わせる！',
+              formulas: [
+                String.raw`\text{全体} = 30 + 150`,
+                String.raw`= 180 \text{ cm}^2`,
+              ],
+            },
+          ],
+          tips: [
+            { title: '台形の公式', description: '(上底 + 下底) × 高さ ÷ 2' },
+            { title: '三角形の公式', description: '底辺 × 高さ ÷ 2' },
+            { title: '分割法', description: '複雑な図形は、シンプルな形に分けて考える' },
+            { title: '高さ', description: '高さは必ず底辺に垂直な長さ' },
+          ],
+        },
+      },
+      {
+        id: 'geo3',
+        title: '問題10（体積）',
+        date: '2026-02-08',
+        formula: String.raw`\text{体積} = \fbox{?} \text{ cm}^3`,
+        answer: '522 cm³',
+        diagram: '3d-composite',
+        explanation: {
+          method: '立体を分解して考える',
+          methodDescription: '複雑な形は、直方体（箱）に分けて考えよう！それぞれの箱の体積を足し算すればOK！',
+          steps: [
+            {
+              title: 'ステップ1：どう分ける？',
+              description: 'この形は2つの直方体（箱）が組み合わさっているよ！',
+              formulas: [
+                String.raw`\text{大きい箱：横9cm × 縦7cm × 高さ6cm}`,
+                String.raw`\text{小さい箱：横4cm × 縦4cm × 高さ9cm}`,
+              ],
+            },
+            {
+              title: 'ステップ2：大きい箱の体積',
+              description: '直方体の体積 = たて × よこ × 高さ',
+              formulas: [
+                String.raw`\text{大きい箱} = 9 \times 7 \times 6`,
+                String.raw`= 63 \times 6`,
+                String.raw`= 378 \text{ cm}^3`,
+              ],
+            },
+            {
+              title: 'ステップ3：小さい箱の体積',
+              description: '同じように計算するよ',
+              formulas: [
+                String.raw`\text{小さい箱} = 4 \times 4 \times 9`,
+                String.raw`= 16 \times 9`,
+                String.raw`= 144 \text{ cm}^3`,
+              ],
+            },
+            {
+              title: 'ステップ4：合計を求めよう',
+              description: '2つの箱の体積を足せば完成！',
+              formulas: [
+                String.raw`\text{全体の体積} = 378 + 144`,
+                String.raw`= 522 \text{ cm}^3`,
+              ],
+            },
+          ],
+          tips: [
+            { title: '直方体の体積', description: 'たて × よこ × 高さ' },
+            { title: '分割思考', description: '複雑な立体は、シンプルな形に分けて考える' },
+            { title: '図を描く', description: 'どこで分けるか、線を引いて考えるといいよ' },
+            { title: '単位', description: '体積の単位は cm³（立方センチメートル）' },
+          ],
+        },
       },
     ],
   },

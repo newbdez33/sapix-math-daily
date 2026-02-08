@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import type { Question } from '@/data/questions'
 import { MathFormula } from './MathFormula'
+import { GeometryDiagram } from './GeometryDiagram'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -97,6 +98,14 @@ export function QuestionCard({ question, index, showAnswer = false }: QuestionCa
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {question.diagram && (
+          <div className="flex justify-center py-4">
+            <GeometryDiagram
+              type={question.diagram as 'angle-puzzle' | 'trapezoid' | '3d-composite'}
+              className="w-full"
+            />
+          </div>
+        )}
         <div className="flex justify-center py-4 text-xl">
           <MathFormula formula={question.formula} />
         </div>
